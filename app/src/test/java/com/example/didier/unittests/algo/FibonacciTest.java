@@ -1,5 +1,7 @@
 package com.example.didier.unittests.algo;
 
+import android.util.Log;
+
 import com.example.didier.unittests.Algo;
 
 import org.junit.Test;
@@ -17,6 +19,7 @@ import static org.junit.Assert.*;
  */
 @RunWith(Parameterized.class)
 public class FibonacciTest {
+	private final static String LOG_TAG = "FIBONACCITEST";
 
 	private int index;
 	private int expected;
@@ -55,6 +58,19 @@ public class FibonacciTest {
 
 	@Test
 	public void getFibonacciTest(){
-		assertEquals(this.expected, Algo.getFibonacci(this.index));
+		long t0 = System.nanoTime();
+		int fibValue = Algo.getFibonacci(this.index);
+		assertEquals(this.expected, fibValue);
+		long t1 = System.nanoTime();
+		System.out.println("fibonacci [" +this.index +"] : " +fibValue +"  (" +(t1-t0) +" ns)");
+	}
+
+	@Test
+	public void getFibonacci2Test(){
+		long t0 = System.nanoTime();
+		int fibValue = Algo.getFibonacci2(this.index);
+		assertEquals(this.expected, fibValue);
+		long t1 = System.nanoTime();
+		System.out.println("fibonacci2 [" +this.index +"] : " +fibValue +"  (" +(t1-t0) +" ns)");
 	}
 }
