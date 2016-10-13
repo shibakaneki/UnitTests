@@ -22,9 +22,9 @@ public class FibonacciTest {
 	private final static String LOG_TAG = "FIBONACCITEST";
 
 	private int index;
-	private int expected;
+	private long expected;
 
-	public FibonacciTest(int index, int expected){
+	public FibonacciTest(int index, long expected){
 		this.index = index;
 		this.expected = expected;
 	}
@@ -52,25 +52,35 @@ public class FibonacciTest {
 				{17, 1597},
 				{18, 2584},
 				{19, 4181},
-				{20, 6765}
+				{20, 6765},
+				{90, 2880067194370816120l}
 		});
 	}
 
-	@Test
+	/*@Test
 	public void getFibonacciTest(){
 		long t0 = System.nanoTime();
-		int fibValue = Algo.getFibonacci(this.index);
+		long fibValue = Algo.getFibonacci(this.index);
 		assertEquals(this.expected, fibValue);
 		long t1 = System.nanoTime();
 		System.out.println("fibonacci [" +this.index +"] : " +fibValue +"  (" +(t1-t0) +" ns)");
-	}
+	}*/
 
 	@Test
 	public void getFibonacci2Test(){
 		long t0 = System.nanoTime();
-		int fibValue = Algo.getFibonacci2(this.index);
+		long fibValue = Algo.getFibonacci2(this.index);
 		assertEquals(this.expected, fibValue);
 		long t1 = System.nanoTime();
 		System.out.println("fibonacci2 [" +this.index +"] : " +fibValue +"  (" +(t1-t0) +" ns)");
+	}
+
+	@Test
+	public void getFibonacci3Test(){
+		long t0 = System.nanoTime();
+		long fibValue = Algo.getFibonacci3(this.index);
+		assertEquals(this.expected, fibValue);
+		long t1 = System.nanoTime();
+		System.out.println("fibonacci3 [" +this.index +"] : " +fibValue +"  (" +(t1-t0) +" ns)");
 	}
 }

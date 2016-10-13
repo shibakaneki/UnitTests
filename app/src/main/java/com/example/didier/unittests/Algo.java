@@ -1,11 +1,16 @@
 package com.example.didier.unittests;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by didier on 6/17/16.
  */
 public class Algo {
 
-	public static int getFibonacci(int index){
+	private static List<Long> cache = new ArrayList<>();
+
+	public static long getFibonacci(int index){
 		if(index <= 1){
 			return index;
 		}
@@ -13,13 +18,13 @@ public class Algo {
 		return getFibonacci(index - 1) + getFibonacci(index - 2);
 	}
 
-	public static int getFibonacci2(int index){
+	public static long getFibonacci2(int index){
 		if(index == 0){ return 0; }
 		if(index > 0 && index < 3){ return 1; }
 
-		int result = 0;
-		int prevResult = 1;
-		int prevPrevResult = 1;
+		long result = 0;
+		long prevResult = 1;
+		long prevPrevResult = 1;
 
 		for(int i=2; i<index; i++){
 			result = prevResult + prevPrevResult;
@@ -28,5 +33,21 @@ public class Algo {
 		}
 
 		return result;
+	}
+
+	public static long getFibonacci3(int index){
+		if(index < cache.size()){
+			return cache.get(index);
+		}
+
+		long fibValue;
+		if(index <= 1){
+			fibValue = index;
+		}else{
+			fibValue = getFibonacci3(index - 1) + getFibonacci3(index - 2);
+		}
+
+		cache.add(fibValue);
+		return fibValue;
 	}
 }
